@@ -1,0 +1,27 @@
+.contactCard {
+  border: 1px solid black;
+  border-radius: 12px;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: center;
+}
+
+.contactContent {
+  align-items: center;
+}
+.contactInfo {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 0;
+}
+.contactInfo:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.contactIcon {
+  width: 24px;
+  /* height: 24px; */
+}
