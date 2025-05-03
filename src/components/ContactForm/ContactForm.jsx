@@ -3,13 +3,9 @@ import { Form, Formik, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
 import { useDispatch } from 'react-redux';
-import { addContact } from '../../redux/contactsSlice';
-import { nanoid } from '@reduxjs/toolkit';
+import { addContact } from '../../redux/contactsOps';
 
 const ContactForm = () => {
-  const nameId = nanoid();
-  const numberId = nanoid();
-
   const initialValues = {
     name: '',
     number: '',
@@ -18,7 +14,6 @@ const ContactForm = () => {
   const dispatch = useDispatch();
   const handleAddContact = values => {
     const newContact = {
-      id: nanoid(),
       name: values.name,
       number: values.number,
     };
@@ -44,52 +39,55 @@ const ContactForm = () => {
     });
 
   return (
-    <div className={s.contactFormWrapper}>
-      <Formik
-        onSubmit={onSubmit}
-        initialValues={initialValues}
-        validationSchema={applySchema}
-      >
-        <Form className={s.contactForm}>
-          <div className={s.contactFormInput}>
-            <label htmlFor={nameId} className={s.contactFormLabel}>
-              <span>Name</span>
-              <Field
-                id={nameId}
-                type="text"
-                name="name"
-                placeholder="Enter your name"
-              />
-              <ErrorMessage
-                name="name"
-                component="div"
-                className={s.errorMessage}
-              />
-            </label>
-          </div>
-          <div className={s.contactFormInput}>
-            <label htmlFor={numberId} className={s.contactFormLabel}>
-              <span>Number</span>
-              <Field
-                id={numberId}
-                type="tel"
-                pattern="^\+?[0-9\s\-]{7,20}$"
-                name="number"
-                placeholder="+49 170 1234567"
-              />
-              <ErrorMessage
-                name="number"
-                component="div"
-                className={s.errorMessage}
-              />
-            </label>
-          </div>
-          <button type="submit" className={s.contactFormBtn}>
-            Add contact
-          </button>
-        </Form>
-      </Formik>
-    </div>
+    <>
+      <h1>Phonebook</h1>
+      <div className={s.contactFormWrapper}>
+        <Formik
+          onSubmit={onSubmit}
+          initialValues={initialValues}
+          validationSchema={applySchema}
+        >
+          <Form className={s.contactForm}>
+            <div className={s.contactFormInput}>
+              <label htmlFor="name" className={s.contactFormLabel}>
+                <span>Name</span>
+                <Field
+                  id="name"
+                  type="text"
+                  name="name"
+                  placeholder="Enter your name"
+                />
+                <ErrorMessage
+                  name="name"
+                  component="div"
+                  className={s.errorMessage}
+                />
+              </label>
+            </div>
+            <div className={s.contactFormInput}>
+              <label htmlFor="number" className={s.contactFormLabel}>
+                <span>Number</span>
+                <Field
+                  id="number"
+                  type="tel"
+                  pattern="^\+?[0-9\s\-]{7,20}$"
+                  name="number"
+                  placeholder="+49 170 1234567"
+                />
+                <ErrorMessage
+                  name="number"
+                  component="div"
+                  className={s.errorMessage}
+                />
+              </label>
+            </div>
+            <button type="submit" className={s.contactFormBtn}>
+              Add contact
+            </button>
+          </Form>
+        </Formik>
+      </div>
+    </>
   );
 };
 

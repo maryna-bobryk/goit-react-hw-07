@@ -6,6 +6,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 32px;
   align-items: center;
+  /* width: 500px; */
 }
 
 .contactContent {
@@ -23,5 +24,4 @@
 
 .contactIcon {
   width: 24px;
-  /* height: 24px; */
 }
