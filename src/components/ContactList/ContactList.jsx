@@ -9,8 +9,9 @@ import {
 import { DiVim } from 'react-icons/di';
 import Loader from '../Loader/Loader';
 import 'react-toastify/dist/ReactToastify.css';
-import { useEffect, useState } from 'react';
+
 import { showError } from '../../services/toastifyAlert';
+import { useState } from 'react';
 
 const ContactList = () => {
   const contacts = useSelector(selectFilteredContactsMemo);
@@ -18,19 +19,16 @@ const ContactList = () => {
   const error = useSelector(selectError);
 
   const [toastShown, setToastShown] = useState(false);
-  useEffect(() => {
-    if (!loading && error && !toastShown) {
-      showError('Es gab einen Fehler beim Laden der Kontakte.');
-      setToastShown(true);
-    }
-    if (!loading && !error && contacts.length === 0 && !toastShown) {
-      showError('Keine Kontakte gefunden');
-      setToastShown(true);
-    }
-    if (loading || contacts.length > 0 || error === null) {
-      setToastShown(false);
-    }
-  }, [contacts, loading, error, toastShown]);
+
+  if (!loading && error && !toastShown) {
+    showError('Es gab einen Fehler beim Laden der Kontakte.');
+    setToastShown(true);
+  } else if (!loading && !error && contacts.length === 0 && !toastShown) {
+    showError('Keine Kontakte gefunden');
+    setToastShown(true);
+  } else if (contacts.length > 0 && toastShown) {
+    setToastShown(false);
+  }
 
   return (
     <div className={s.contactListWrapper}>
