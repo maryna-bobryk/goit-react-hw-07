@@ -1,18 +1,27 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import './App.css';
 import ContactForm from './components/ContactForm/ContactForm';
 import ContactList from './components/ContactList/ContactList';
 import SearchBox from './components/SearchBox/SearchBox';
 import { useEffect } from 'react';
 import { fetchContacts } from './redux/contactsOps';
-// import { selectError, selectLoading } from './redux/contactsSlice';
-// import { showError } from './services/toastifyAlert';
-import Loader from './components/Loader/Loader';
+// import { showError, showSuccess } from './services/toastifyAlert';
+// import { addContact, deleteContact, fetchContacts } from './redux/contactsOps';
 
 function App() {
   const dispatch = useDispatch();
-  // const loading = useSelector(selectLoading);
-  // const error = useSelector(selectError);
+
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     try {
+  //       await dispatch(fetchContacts()).unwrap();
+  // showSuccess('Kontakte erfolgreich geladen');
+  //     } catch (error) {
+  //       showError('Fehler beim Laden der Kontakte');
+  //     }
+  //   };
+  //   getData();
+  // }, [dispatch]);
 
   useEffect(() => {
     dispatch(fetchContacts());
